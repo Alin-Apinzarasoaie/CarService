@@ -6,15 +6,14 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.regex.Pattern;
 
 public final class EmployeeUtilsImpl implements IEmployeeUtils {
 
     private static EmployeeUtilsImpl INSTANCE;
 
-    final Pattern DATE_PATTERN = Pattern.compile("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$");
+    private static final int SALARY_ADDITION = 1000;
 
-    private final static String UUID_PATTERN = "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}";
+    private static final int MONTHS_OF_A_YEAR = 12;
 
     private ArrayList<Employee> allEmployees = new ArrayList<>();
 
@@ -80,9 +79,9 @@ public final class EmployeeUtilsImpl implements IEmployeeUtils {
 
         Period difference = Period.between(optionalEmployee.orElse(null).getEmploymentDate(), now);
 
-        int seniority = ((difference.getYears() * 12) + difference.getMonths());
+        int seniority = ((difference.getYears() * MONTHS_OF_A_YEAR) + difference.getMonths());
 
-        return (seniority * optionalEmployee.get().getSalaryCoefficient() * 1000);
+        return (seniority * optionalEmployee.get().getSalaryCoefficient() * SALARY_ADDITION);
     }
 
     @Override
@@ -111,25 +110,5 @@ public final class EmployeeUtilsImpl implements IEmployeeUtils {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public Boolean isStringUUID(String uuid) {
-
-        String stringUUID = uuid.toString();
-        if(stringUUID.matches(UUID_PATTERN)) {
-            return true;
-        }
-        System.out.println("Acesta nu este un id valid.");
-        return false;
-    }
-
-    @Override
-    public Boolean checkDate(String date) {
-        if(DATE_PATTERN.matcher(date).matches())
-            return true;
-
-        System.out.println("Aceasta nu este o data valida.");
-        return false;
     }
 }

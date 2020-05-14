@@ -1,5 +1,7 @@
 package com.carservice;
 
+import com.carservice.Utils.UtilsImpl;
+import com.carservice.car.*;
 import com.carservice.entities.employee.Employee;
 import com.carservice.entities.employee.EmployeeUtilsImpl;
 import com.carservice.entities.employee.EmployeeStatus;
@@ -14,7 +16,21 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Vehicle standardVehicle = new StandardVehicle(200001, 1996, true, TransmissionMode.AUTOMAT);
+
+        BusVehicle busVehicle = new BusVehicle(400000, 2000, false, 24);
+
+        TruckVehicle truckVehicle = new TruckVehicle(900000, 2019, true, 30);
+
+        System.out.println(standardVehicle.calculateInsurancePolicy());
+        System.out.println(standardVehicle.calculateInsurancePolicy(true));
+
+
+        //----------
+
         EmployeeUtilsImpl employeeUtils = EmployeeUtilsImpl.getInstance();
+
+        UtilsImpl utils = UtilsImpl.getInstance();
 
         Scanner keyboard = new Scanner(System.in);
 
@@ -79,13 +95,13 @@ public class Main {
                                             String assistentLastName = keyboard.next();
                                             System.out.println("Introduceti data nasterii sub forma (yyyy-MM-dd) Exemplu: 1997-11-30");
                                             String assistentBirthday = keyboard.next();
-                                            if(!employeeUtils.checkDate(assistentBirthday)){
+                                            if(!utils.checkDate(assistentBirthday)){
                                                 break;
                                             }
                                             LocalDate assistantBirthdayDate = LocalDate.parse(assistentBirthday, DateTimeFormatter.ISO_LOCAL_DATE);
                                             System.out.println("Introduceti data angajarii sub forma (yyyy-MM-dd) Exemplu: 2016-04-12");
                                             String assistentEmployment = keyboard.next();
-                                            if(!employeeUtils.checkDate(assistentEmployment)){
+                                            if(!utils.checkDate(assistentEmployment)){
                                                 break;
                                             }
                                             LocalDate assisentemploymentDate = LocalDate.parse(assistentEmployment, DateTimeFormatter.ISO_LOCAL_DATE);
@@ -107,13 +123,13 @@ public class Main {
                                             String mechanicLastName = keyboard.next();
                                             System.out.println("Introduceti data nasterii sub forma (yyyy-MM-dd) Exemplu: 1997-11-30");
                                             String mechanicBirthday = keyboard.next();
-                                            if(!employeeUtils.checkDate(mechanicBirthday)){
+                                            if(!utils.checkDate(mechanicBirthday)){
                                                 break;
                                             }
                                             LocalDate mechanicBirthdayDate = LocalDate.parse(mechanicBirthday);
                                             System.out.println("Introduceti data angajarii sub forma (yyy.MM-dd) Exemplu: 2016-04-12");
                                             String mechanicEmployment = keyboard.next();
-                                            if(!employeeUtils.checkDate(mechanicEmployment)){
+                                            if(!utils.checkDate(mechanicEmployment)){
                                                 break;
                                             }
                                             LocalDate mechanicEmploymentDate = LocalDate.parse(mechanicEmployment);
@@ -135,13 +151,13 @@ public class Main {
                                             String directorLastName = keyboard.next();
                                             System.out.println("Introduceti data nasterii sub forma (yyyy-MM-dd) Exemplu: 1997-11-30");
                                             String directorBirthday = keyboard.next();
-                                            if(!employeeUtils.checkDate(directorBirthday)){
+                                            if(!utils.checkDate(directorBirthday)){
                                                 break;
                                             }
                                             LocalDate directorBirthdayDate = LocalDate.parse(directorBirthday);
                                             System.out.println("Introduceti data angajarii sub forma (yyy.MM-dd) Exemplu: 2016-04-12");
                                             String directorEmployment = keyboard.next();
-                                            if(!employeeUtils.checkDate(directorEmployment)){
+                                            if(!utils.checkDate(directorEmployment)){
                                                 break;
                                             }
                                             LocalDate directorEmploymentDate = LocalDate.parse(directorEmployment);
@@ -165,7 +181,7 @@ public class Main {
                                 System.out.println("Va rog introduceti ID-ul angajatului pe care doriti sa-l stergeti: ");
                                 String deleteEmployeeId = keyboard.next();
 
-                                if(!employeeUtils.isStringUUID(deleteEmployeeId))
+                                if(!utils.isStringUUID(deleteEmployeeId))
                                     break;
 
                                 Optional<Employee> deleteOptionalEmployee = Optional.ofNullable(employeeUtils.getEmployeeByUUID(UUID.fromString(deleteEmployeeId)));
@@ -180,7 +196,7 @@ public class Main {
                                 System.out.println("Va rog introduceti ID-ul angajatului pe care doriti sa-l editati: ");
                                 String updateEmplyeeId = keyboard.next();
 
-                                if(!employeeUtils.isStringUUID(updateEmplyeeId))
+                                if(!utils.isStringUUID(updateEmplyeeId))
                                     break;
 
                                 Optional<Employee> updateOptionalEmployee = Optional.ofNullable(employeeUtils.getEmployeeByUUID(UUID.fromString(updateEmplyeeId)));
@@ -237,7 +253,7 @@ public class Main {
                                 System.out.println("Va rog introduceti ID-ul angajatului pe care doriti sa-l afisati: ");
                                 String printEmployeeId = keyboard.next();
 
-                                if(!employeeUtils.isStringUUID(printEmployeeId))
+                                if(!utils.isStringUUID(printEmployeeId))
                                     break;
 
                                 Optional<Employee> optionalEmployee = Optional.ofNullable(employeeUtils.getEmployeeByUUID(UUID.fromString(printEmployeeId)));
@@ -250,7 +266,7 @@ public class Main {
                                 System.out.println("Va rog introduceti ID-ul anagalatului caruia doriti sa-i vedeti salariul: ");
                                 String salaryEmployeeId = keyboard.next();
 
-                                if(!employeeUtils.isStringUUID(salaryEmployeeId))
+                                if(!utils.isStringUUID(salaryEmployeeId))
                                     break;
 
                                 Optional<Employee> salaryOptionalEmployee = Optional.ofNullable(employeeUtils.getEmployeeByUUID(UUID.fromString(salaryEmployeeId)));

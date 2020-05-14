@@ -18,8 +18,4 @@ public interface IEmployeeUtils {
 
     Boolean checkEmployee(Employee employee);
 
-    Boolean isStringUUID(String uuid);
-
-    Boolean checkDate(String date);
-
 }
