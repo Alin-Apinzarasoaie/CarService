@@ -1,51 +1,134 @@
 package com.carservice;
 
 import com.carservice.Utils.UtilsImpl;
-import com.carservice.car.*;
 import com.carservice.entities.employee.Employee;
-import com.carservice.entities.employee.EmployeeUtilsImpl;
+import com.carservice.Utils.EmployeeUtilsImpl;
 import com.carservice.entities.employee.EmployeeStatus;
+import com.carservice.entities.workshop.Workshop;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
-import java.util.Scanner;
-import java.util.UUID;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Vehicle standardVehicle = new StandardVehicle(200001, 1996, true, TransmissionMode.AUTOMAT);
-
-        BusVehicle busVehicle = new BusVehicle(400000, 2000, false, 24);
-
-        TruckVehicle truckVehicle = new TruckVehicle(900000, 2019, true, 30);
-
-        System.out.println(standardVehicle.calculateInsurancePolicy());
-        System.out.println(standardVehicle.calculateInsurancePolicy(true));
-
-
-        //----------
+        Workshop workshop = new Workshop();
 
         EmployeeUtilsImpl employeeUtils = EmployeeUtilsImpl.getInstance();
+
+        //---- Testing assignFreeEmployeeToAVehicleFromWaitingList
+
+//        LocalDate birthdayDate = LocalDate.parse("1997-03-03");
+//        LocalDate emDate = LocalDate.parse("1997-03-03");
+//
+//        Employee employee1 = new Employee("Alin", "Andrei", birthdayDate, emDate, "123", EmployeeStatus.ASSISTENT);
+//        Employee employee2 = new Employee("Alin", "Andrei", birthdayDate, emDate, "123", EmployeeStatus.ASSISTENT);
+//        Employee employee3 = new Employee("Alin", "Andrei", birthdayDate, emDate, "123", EmployeeStatus.ASSISTENT);
+//        Employee employee4 = new Employee("Alin", "Andrei", birthdayDate, emDate, "123", EmployeeStatus.ASSISTENT);
+//        Employee employee5 = new Employee("Alin", "Andrei", birthdayDate, emDate, "123", EmployeeStatus.ASSISTENT);
+//
+//        Vehicle standardVehicle = new StandardVehicle(200001, 1996, true, TransmissionMode.AUTOMAT);
+//        Vehicle busVehicle = new BusVehicle(2122, 1996, true, 21);
+//        Vehicle truckVehicle = new TruckVehicle(200001, 1996, true, 3);
+//        Vehicle standardVehicle2 = new StandardVehicle(200001, 1996, true, TransmissionMode.AUTOMAT);
+//        Vehicle standardVehicle3 = new StandardVehicle(200001, 1996, true, TransmissionMode.AUTOMAT);
+//        Vehicle standardVehicle4 = new StandardVehicle(200001, 1996, true, TransmissionMode.AUTOMAT);
+//
+//        ConcurrentLinkedQueue<Employee> freeEm = new ConcurrentLinkedQueue<>();
+//        freeEm.add(employee1);
+//        freeEm.add(employee2);
+//        freeEm.add(employee3);
+//        freeEm.add(employee4);
+//        freeEm.add(employee5);
+//
+//        workshop.setFreeEmployee(freeEm);
+//
+//        workshop.addVehicleToQueue(standardVehicle2, employee5);
+//        workshop.addVehicleToQueue(standardVehicle3, employee4);
+//        workshop.addVehicleToQueue(standardVehicle4);
+//
+//        workshop.addVehicle(standardVehicle, Optional.of(employee1.getId()));
+//        workshop.addVehicle(busVehicle, Optional.of(employee2.getId()));
+//        workshop.addVehicle(truckVehicle, Optional.of(employee3.getId()));
+//        workshop.addVehicle(standardVehicle, Optional.of(employee4.getId()));
+//
+//
+//        Thread thread1 = new Thread( new Runnable() {
+//            @Override
+//            public void run() {
+//                workshop.removeVehicleFromWorkshopIfJobDone();
+//            }
+//        });
+//
+//        Thread thread2 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                workshop.assignFreeEmployeeToAVehicleFromWaitingList();
+//            }
+//        });
+//
+//        thread1.start();
+//        thread2.start();
+
+        //---- Testing removeVehicleWhenJobDoneThread
+
+//        Vehicle standardVehicle = new StandardVehicle(200001, 1996, true, TransmissionMode.AUTOMAT);
+//
+//        Vehicle standardVehicle2 = new StandardVehicle(200001, 1996, true, TransmissionMode.AUTOMAT);
+//
+//        LocalDate birthdayDate = LocalDate.parse("1997-03-03");
+//        LocalDate emDate = LocalDate.parse("1997-03-03");
+//
+//        Employee employee1 = new Employee("Alin", "Andrei", birthdayDate, emDate, "123", EmployeeStatus.ASSISTENT);
+//        Employee employee2 = new Employee("Alin", "Andrei", birthdayDate, emDate, "123", EmployeeStatus.ASSISTENT);
+//
+//        System.out.println(workshop.getFreeEmployee().toString());
+//
+//        ConcurrentLinkedQueue<Employee> freeEm = new ConcurrentLinkedQueue<>();
+//        freeEm.add(employee1);
+//        freeEm.add(employee2);
+//
+//        System.out.println(workshop.getFreeEmployee().toString());
+//
+//        workshop.setFreeEmployee(freeEm);
+//
+//        System.out.println(workshop.getFreeEmployee().toString());
+//
+//        workshop.addVehicle(standardVehicle, null);
+//        workshop.addVehicle(standardVehicle2, null);
+//
+//        System.out.println(workshop.getFreeEmployee().toString());
+//
+//        Thread removeVehicleWhenJobDoneThread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                workshop.removeVehicleFromWorkshopIfJobDone();
+//            }
+//        });
+//
+//        removeVehicleWhenJobDoneThread.start();
+//
+//        System.out.println(workshop.getFreeEmployee().toString());
+
+
+        //---- Main
 
         UtilsImpl utils = UtilsImpl.getInstance();
 
         Scanner keyboard = new Scanner(System.in);
-
-        boolean secondSwitch = true;
-
 
 
         while (true) {
             System.out.println("---Optiuni principale---");
             System.out.println("0. Inchideti programul");
             System.out.println("1. Operatii Angajati");
-            System.out.println("2. Operatii Masini");
+            System.out.println("2. Activitate Atelier");
             System.out.println("Introduceti optiunea dumneavoastra: ");
 
             String option = keyboard.next();
+            boolean secondSwitch = true;
 
             switch (option) {
                 case "0":
@@ -284,6 +367,7 @@ public class Main {
                                 break;
                             default:
                                 System.out.println("Optiune gresita.");
+                                break;
                         }
                     }
                     break;

@@ -17,6 +17,8 @@ public abstract class BaseEmployee {
 
     private double salaryCoefficient;
 
+
+
     public BaseEmployee(String firstName, String lastName, LocalDate birthDate, LocalDate employmentDate) {
         this.id = UUID.randomUUID();
         this.firstName = firstName;

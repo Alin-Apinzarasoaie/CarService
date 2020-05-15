@@ -1,4 +1,4 @@
-package com.carservice.car;
+package com.carservice.entities.car;
 
 public enum TransmissionMode {
     MANUAL,

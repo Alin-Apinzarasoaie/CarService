@@ -1,4 +1,7 @@
-package com.carservice.entities.employee;
+package com.carservice.Utils;
+
+import com.carservice.entities.employee.Employee;
+import com.carservice.entities.employee.EmployeeStatus;
 
 import java.util.UUID;
 
