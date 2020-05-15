@@ -18,7 +18,7 @@ public class Main {
 
         EmployeeUtilsImpl employeeUtils = EmployeeUtilsImpl.getInstance();
 
-        //---- Testing assignFreeEmployeeToAVehicleFromWaitingList
+        //---- Testing assignFreeEmployeeToAVehicleFromWaitingList + removeVehicleWhenJobDoneThread
 
 //        LocalDate birthdayDate = LocalDate.parse("1997-03-03");
 //        LocalDate emDate = LocalDate.parse("1997-03-03");
@@ -71,46 +71,6 @@ public class Main {
 //
 //        thread1.start();
 //        thread2.start();
-
-        //---- Testing removeVehicleWhenJobDoneThread
-
-//        Vehicle standardVehicle = new StandardVehicle(200001, 1996, true, TransmissionMode.AUTOMAT);
-//
-//        Vehicle standardVehicle2 = new StandardVehicle(200001, 1996, true, TransmissionMode.AUTOMAT);
-//
-//        LocalDate birthdayDate = LocalDate.parse("1997-03-03");
-//        LocalDate emDate = LocalDate.parse("1997-03-03");
-//
-//        Employee employee1 = new Employee("Alin", "Andrei", birthdayDate, emDate, "123", EmployeeStatus.ASSISTENT);
-//        Employee employee2 = new Employee("Alin", "Andrei", birthdayDate, emDate, "123", EmployeeStatus.ASSISTENT);
-//
-//        System.out.println(workshop.getFreeEmployee().toString());
-//
-//        ConcurrentLinkedQueue<Employee> freeEm = new ConcurrentLinkedQueue<>();
-//        freeEm.add(employee1);
-//        freeEm.add(employee2);
-//
-//        System.out.println(workshop.getFreeEmployee().toString());
-//
-//        workshop.setFreeEmployee(freeEm);
-//
-//        System.out.println(workshop.getFreeEmployee().toString());
-//
-//        workshop.addVehicle(standardVehicle, null);
-//        workshop.addVehicle(standardVehicle2, null);
-//
-//        System.out.println(workshop.getFreeEmployee().toString());
-//
-//        Thread removeVehicleWhenJobDoneThread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                workshop.removeVehicleFromWorkshopIfJobDone();
-//            }
-//        });
-//
-//        removeVehicleWhenJobDoneThread.start();
-//
-//        System.out.println(workshop.getFreeEmployee().toString());
 
 
         //---- Main
